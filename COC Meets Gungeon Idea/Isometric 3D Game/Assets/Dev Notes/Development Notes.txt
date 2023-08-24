@@ -1,0 +1,31 @@
+- Gameplay to Village Camera logic and ideas
+27/07/2023
+
+The idea behind this is for two different types of camera to coexist with Cinemachine which will allow for the player to upgrader their village but also move around it 
+with an isometric feel. Since I'm using cinemachine I'm flexible to do this in different ways but at the moment the cameras do switch when I press a key. This will 
+change to be a trigger when entering the town hall of the village. 
+
+The next move for me is to make it possible for a building to be clicked in which another camera will activate where the village item will move upwards on the Y Axis to be isomlated away from the village and the camera will rotate around the village item allowing to see the new desgin and also seeing the animations in play / UI Data like cost. 
+
+I already have the logic to switch cameras so it will just mean making a cycle pattern so each time we end back at the player. Back buttons will change cameras etc. But the main goal is to keep the camera blends smooth and not boring to look at. 
+
+28/07/2023
+
+Since I already made the logic for two camer's to switch I altered the if conditions which allowed for a third camera to be involved. This camera is for rotating around a village item when they are selected for uograde. UI needs to be added to cancel the upgrade and switch camera's back but for now the cube moves 
+slowly upward which is great but a little jittery this can be changed kater and the cube needs to be more centre to the camera otherwise it looks stupid. 
+- the camera rotates around a child object which allows for a pivoting effect. The cameras need more work since the logic o0nly supports one object at the moment but this can soon eb changed with conditons Later I can change the movement to happen with
+the Rigibody to prepare for hit detection etc. Using force would remove the jitter
+
+More values need to be taken into consideration like the Home position this would be the desired position for the camera to zoom in at any given point. Also some camera effects would look nice as the camera is following the object upwards
+
+06/08/2023
+
+I've realised that simply the OnMouseDown function for moving my object is not going to cut it. I'm going to need to use a raycast system to identify which object needs to move. This can easily be done by casting a raycast from the cursor position 
+and do this from the camera that will be type Upgrade camera. I still need to make the cycle camera system loop back to gameplay but I've been more focused on getting the effects working first. 
+Seems to look like the scripting is getting clunky due to static variables and if statements invading the project. So I need to clean that up too. 
+
+07/08/2023
+I've now made a basic Raycast that starts at the Main.Camera Origin and for now never ends until it finds Type collider. I need to add a LayerMask to filter what can and cannot be hit by the Ray so that the camerera behaviour continues to work. 
+For now the ray detects an object and the Camera will focus on that Object instead of the entire village which I'm yet to make. I have a made a Helper which can set up the variables and also detect the button presses. 
+Next thing to do will be to assend the village object so that I can rotate around it and also fix the current pivot issue that I'm having which I believe to be a parent and child inheritance issue 
+After I have done this I'll make a repo so it's easier to make dev notes and also so I can add to the Read Me 
