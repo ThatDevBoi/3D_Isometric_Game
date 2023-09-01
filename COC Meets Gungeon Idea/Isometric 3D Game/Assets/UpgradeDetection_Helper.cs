@@ -67,9 +67,9 @@ public class UpgradeDetection_Helper : MonoBehaviour
     void CameraSettings(RaycastHit hit)
     {
         // Obtain the Pivot Holder
-        hitObjectCameraPivoter = hit.collider.gameObject.transform.GetChild(0).GetComponent<Transform>();
+        hitObjectCameraPivoter = hit.collider.gameObject.transform.GetChild(0).GetChild(4).GetComponent<Transform>();
         // set up the camera vars 
-        pivotCam.LookAt = hit.collider.transform;
+        pivotCam.LookAt = hitObjectCameraPivoter;
         pivotCam.transform.parent = hitObjectCameraPivoter.transform;   // child cam to pivot point 
         pivotCam.enabled = true;
     }

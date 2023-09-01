@@ -13,9 +13,9 @@ TagManager:
   - UI
   - VillageItem
   - VerticalChange
-  - 
-  - 
-  - 
+  - Player
+  - Unit
+  - Obstacle
   - 
   - 
   - 

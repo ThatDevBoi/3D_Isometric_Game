@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: ArcherTowerStats
+  m_Name: ArcherTower
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   Name: Archer Tower
-  HP: -150
+  HP: 250
   defenseItem: 1
-  outputDMG: 0
+  outputDMG: 20

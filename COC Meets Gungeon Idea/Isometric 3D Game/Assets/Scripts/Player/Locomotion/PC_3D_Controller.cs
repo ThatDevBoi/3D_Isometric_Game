@@ -41,7 +41,7 @@ namespace Main.Player_Locomotion
             // update rotation while in runtime
             Look();
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+            if (Input.GetKeyDown(KeyCode.J) && isGrounded == true)
             {
                 Jump();
             }
