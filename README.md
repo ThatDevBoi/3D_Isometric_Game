@@ -1,2 +1,2 @@
 # 3D_Isometric_Game
-This is currently a Game in development, A 3D isometric game where players must fight to customize their villages and battle each other.  
+This is currently a Game in development, A 3D isometric game where players must fight to customize their villages and battle each other.  The game bases back in the medevil times where ypir main character is he care giver of the village. This village is your pride and joy and looking after it is the main goal at all costs but to look after your village you need resources and the only way to get that is inside the dangers of the forest
