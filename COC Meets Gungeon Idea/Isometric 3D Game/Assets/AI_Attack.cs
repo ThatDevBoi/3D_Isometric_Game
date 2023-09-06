@@ -7,7 +7,7 @@ public abstract class AI_Attack : ScriptableObject
     public abstract void ExecuteAttack(Transform attacker, Transform target);
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "NewScriptableObject", menuName = "AI/Attack/Melee Attack")]
 public class MeleeAttack : AI_Attack
 {
     public override void ExecuteAttack(Transform attacker, Transform target)
@@ -17,7 +17,7 @@ public class MeleeAttack : AI_Attack
     }
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "NewScriptableObject", menuName = "AI/Attack/Ranged Attack")]
 public class RangedAttack : AI_Attack
 {
     public GameObject projectile;

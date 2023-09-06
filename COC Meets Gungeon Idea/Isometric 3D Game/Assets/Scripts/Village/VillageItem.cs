@@ -48,13 +48,20 @@ public class VillageItem : MonoBehaviour
 
     Transform firePosition;
 
+    public int HP;
+
 
     private void Start()
     {
+
+        GM.Instance.RegisterDefenseTransform(transform);
        
         // Initialize VillageItem-specific properties
         gameObject.name = Stats.Name;
-        Stats.HP -= 50;
+        //Stats.HP -= 50;
+
+        HP = Stats.HP;
+
         endposition = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
         startPosition = transform.position;
         parentHolder = gameObject.transform.parent;
@@ -108,6 +115,11 @@ public class VillageItem : MonoBehaviour
         {
             // Reset values
         }
+
+        // replace later with effects or mesh split
+        if (HP <= 0)
+            Destroy(gameObject);
+
     }
     #region Field Of View Radius / Shooting Logic
     IEnumerator FindTargetWithDelay(float delay)
@@ -257,13 +269,31 @@ public class VillageItem : MonoBehaviour
         }
     }
     #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "AIProjectile")
+        {
+            SendMessage("ApplyDamage", other.GetComponent<AIProjectile>().DMG);
+        }
+    }
+
+    private void ApplyDamage(int dmg)
+    {
+        HP -= dmg;
+    }
+
+    private void OnDestroy()
+    {
+        GM.Instance.UnregisterDefenseTransform(transform);
+    }
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "NewScriptableObject", menuName = "Village/Village Piece/Stats")]
 public class Stats : ScriptableObject
 {
     public string Name = "";
-    public float HP;
+    public int HP;
     public bool defenseItem = false;
     public float outputDMG;
 }

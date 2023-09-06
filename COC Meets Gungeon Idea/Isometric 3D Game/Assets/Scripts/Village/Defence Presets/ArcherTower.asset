@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ArcherTower
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   Name: Archer Tower
-  HP: 250
+  HP: 10
   defenseItem: 1
   outputDMG: 20

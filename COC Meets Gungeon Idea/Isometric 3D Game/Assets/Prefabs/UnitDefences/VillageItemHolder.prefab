@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5298376561506584824}
   - component: {fileID: 6920000808903119360}
   - component: {fileID: 6948505808203948969}
-  - component: {fileID: 3349902452458594629}
   m_Layer: 0
   m_Name: placeholder archer (2)
   m_TagString: Untagged
@@ -84,27 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3349902452458594629
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3345497784785723381}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3627220426839773242
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +94,6 @@ GameObject:
   - component: {fileID: 6485969035030103301}
   - component: {fileID: 3412314971238343351}
   - component: {fileID: 495014409953115351}
-  - component: {fileID: 4285410792099812729}
   m_Layer: 0
   m_Name: placeholder archer (1)
   m_TagString: Untagged
@@ -189,27 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4285410792099812729
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3627220426839773242}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3659280898053445876
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,9 +179,7 @@ GameObject:
   - component: {fileID: 2400203189199094987}
   - component: {fileID: 6429322798184932974}
   - component: {fileID: 8425504150505649446}
-  - component: {fileID: 8484913557531778604}
-  - component: {fileID: 7891213157318746630}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: 'Archer Tower '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1675,7 +1629,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6219
+  m_VersionIndex: 6249
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1757,49 +1711,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3659280898053445876}
   m_Mesh: {fileID: 0}
---- !u!64 &8484913557531778604
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3659280898053445876}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!65 &7891213157318746630
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3659280898053445876}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2.012272, y: 4.0359983, z: 1.9706397}
-  m_Center: {x: 1.006136, y: 2.0179992, z: -0.98531985}
 --- !u!1 &5502629372470194520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1721,8 @@ GameObject:
   m_Component:
   - component: {fileID: 215050419420907578}
   - component: {fileID: 4524811937929653219}
-  m_Layer: 0
+  - component: {fileID: 7289340785921857084}
+  m_Layer: 6
   m_Name: VillageItemHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1831,7 +1743,7 @@ Transform:
   m_Children:
   - {fileID: 3766877205987576995}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4524811937929653219
 MonoBehaviour:
@@ -1863,12 +1775,33 @@ MonoBehaviour:
   pivotRotateEmpty: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   endposition: {x: 0, y: 0, z: 0}
-  smoothSpeed: 3
   rotSpeed: 10
   startRotate: 0
   ProjectilePrefab: {fileID: 4725032877290892943, guid: d3e842a013491dd4c9db76147e9122a4, type: 3}
-  arrowSpeed: 50
+  arrowSpeed: 40
   fireInterval: 1
+  HP: 0
+--- !u!65 &7289340785921857084
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5502629372470194520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.91, y: 2.84, z: 2}
+  m_Center: {x: 0.34, y: 0, z: 0}
 --- !u!1 &5950624934472410440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,7 +1811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9032098719028605670}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FirePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1893,7 +1826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5950624934472410440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: 3.98, z: -1.02}
+  m_LocalPosition: {x: 0.98, y: 4.29, z: -1.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1911,7 +1844,6 @@ GameObject:
   - component: {fileID: 881821306338166557}
   - component: {fileID: 5106383172145912141}
   - component: {fileID: 6777904757636742060}
-  - component: {fileID: 1696020489930471582}
   m_Layer: 0
   m_Name: placeholder archer
   m_TagString: Untagged
@@ -1984,24 +1916,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1696020489930471582
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7029208247873765815}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

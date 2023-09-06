@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3184702933268525027}
   - component: {fileID: 2713532276379154533}
   - component: {fileID: 516195820899192592}
+  - component: {fileID: 4273919466621674249}
   m_Layer: 0
   m_Name: Archer Arrow Projectile
-  m_TagString: Untagged
+  m_TagString: AIProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &313533169325595563
 MeshFilter:
@@ -133,3 +134,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4273919466621674249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3405455635851266946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898d958faf473c045ad1a672ebb6f3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DMG: 5

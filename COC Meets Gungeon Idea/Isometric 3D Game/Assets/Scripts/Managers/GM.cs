@@ -8,6 +8,10 @@ using Cinemachine;
 // Makes sure each element is set in place the correct way
 public class GM : MonoBehaviour
 {
+    public static GM Instance { get; private set; }
+    private List<AI_Unit> aiUnits = new List<AI_Unit>();
+    private List<Transform> defenseTransforms = new List<Transform>();
+
     private PC_3D_Controller PC;
 
     public bool currentlyUpgrading = false;
@@ -34,6 +38,15 @@ public class GM : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(CameraChecker());
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
@@ -147,4 +160,50 @@ public class GM : MonoBehaviour
         // invoke a clear 
         method.Invoke(new object(), null);
     }
+
+
+    public void RegisterAIUnit(AI_Unit aiUnit)
+    {
+        if (!aiUnits.Contains(aiUnit))
+        {
+            aiUnits.Add(aiUnit);
+        }
+    }
+
+    public void UnregisterAIUnit(AI_Unit aiUnit)
+    {
+        aiUnits.Remove(aiUnit);
+    }
+
+    public void RegisterDefenseTransform(Transform defenseTransform)
+    {
+        if (!defenseTransforms.Contains(defenseTransform))
+        {
+            defenseTransforms.Add(defenseTransform);
+        }
+    }
+
+    public void UnregisterDefenseTransform(Transform defenseTransform)
+    {
+        defenseTransforms.Remove(defenseTransform);
+    }
+
+    public Transform GetNearestDefense(Vector3 position)
+    {
+        Transform nearestTarget = null;
+        float distance = Mathf.Infinity;
+
+        foreach (Transform defenseTransform in defenseTransforms)
+        {
+            float dist = Vector3.Distance(position, defenseTransform.position);
+            if (dist < distance)
+            {
+                nearestTarget = defenseTransform;
+                distance = dist;
+            }
+        }
+
+        return nearestTarget;
+    }
+
 }

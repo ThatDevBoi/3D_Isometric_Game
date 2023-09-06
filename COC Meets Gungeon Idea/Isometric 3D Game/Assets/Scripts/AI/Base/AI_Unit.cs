@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]   // adds Rigibody
@@ -7,13 +8,12 @@ public class AI_Unit : MonoBehaviour
 {
     public AIStates state;
     
-    [SerializeField]
-    private List<GameObject> AllDefences;
 
     public Transform nearestTarget;
 
     public int LayerOfInterest;
-    float distance = 9999;
+    float distance = Mathf.Infinity;
+    float dist = Mathf.Infinity;
 
     Rigidbody physics;
 
@@ -25,14 +25,14 @@ public class AI_Unit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM.Instance.RegisterAIUnit(this);
+
         gameObject.name = state.name;   // set name
         HP = state.HP;
 
 
-        // Fill defences 
-        FindObjectByLayer.FindAndSelectObjectsByLayer(6, AllDefences);
         physics = GetComponent<Rigidbody>();
-        NearestDefence();
+        //NearestDefence();
 
     }
 
@@ -47,31 +47,52 @@ public class AI_Unit : MonoBehaviour
             Destroy(gameObject);
         }
 
+        nearestTarget = GM.Instance.GetNearestDefense(transform.position);
+
+        //// Check for destroyed Transforms and remove them from the list
+        //for (int i = AllDefences.Count - 1; i >= 0; i--)
+        //{
+        //    if (AllDefences[i] == null)
+        //    {
+        //        AllDefences.RemoveAt(i);
+        //    }
+        //}
+
+        //// Get the nearest defense Transform
+        //nearestTarget = NearestDefence();
     }
     // Obtain the nearest enemy in a List of Objects
-    Transform NearestDefence()
-    {
-        for(int i = 0; i < AllDefences.Count; i++)
-        {
-            float dist = Vector3.Distance(gameObject.transform.position, AllDefences[i].transform.position);
+    //Transform NearestDefence()
+    //{
+    //    if (nearestTarget == null || !AllDefences.Contains(nearestTarget.gameObject))
+    //    {
+    //        nearestTarget = null; // Reset nearestTarget to null if it's no longer in the list
 
-            if (dist < distance)
-            {
-                nearestTarget = AllDefences[i].transform;
-                distance = dist;
-            }
-        }
+    //        for (int i = 0; i < AllDefences.Count; i++)
+    //        {
+    //            if (AllDefences[i] != null)
+    //            {
+    //                dist = Vector3.Distance(gameObject.transform.position, AllDefences[i].transform.position);
+    //            }
 
-        return nearestTarget;
-    }
+    //            if (dist < distance)
+    //            {
+    //                nearestTarget = AllDefences[i].transform;
+    //                distance = dist;
+    //            }
+    //        }
+    //    }
+
+    //    return nearestTarget; ;
+    //}
 
     void MoveTowardsDefence()
     {
         // if I am not within distance of the Defence I am running towards and I've not gotten close enough within attacking Range
-        if (Vector3.Distance(transform.position, NearestDefence().position) > state.rangeUntilAttack)
+        if (nearestTarget != null && Vector3.Distance(transform.position, nearestTarget.position) > state.rangeUntilAttack)
         {
             // Make sure I can find the nearest enemy First
-            Vector3 Direction = (NearestDefence().position - transform.position).normalized;
+            Vector3 Direction = (nearestTarget.position - transform.position).normalized;
             physics.velocity = Direction * state.moveSpeed; // Move towards the enemy
         }
         else
@@ -103,9 +124,14 @@ public class AI_Unit : MonoBehaviour
     {
         HP -= damage;
     }
+
+    private void OnDestroy()
+    {
+        GM.Instance.UnregisterAIUnit(this);
+    }
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "NewScriptableObject", menuName = "AI/Stats/Base Stats")]
 public class AIStates : ScriptableObject
 {
     [Tooltip("Name of the AI Unit")]
