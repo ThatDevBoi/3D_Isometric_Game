@@ -16,11 +16,18 @@ public class GM : MonoBehaviour
 
     public bool currentlyUpgrading = false;
 
-    [SerializeField] CinemachineVirtualCamera gameplayCamera, villageCamera, pivotCamera;
+    [SerializeField] public CinemachineVirtualCamera gameplayCamera, villageCamera, pivotCamera;
     [Header("Script Helpers")]
     public GameObject UpgradeHelper;
     public VillageItem currentSelectedVillagePiece;
     Vector3 pivotCamStartPos;
+
+    // Target player fades into 
+    // an area where the trigger is happening 
+    // Possible text that shows on key press?
+
+
+
     #region Enable/Disable
     private void OnEnable()
     {
@@ -68,6 +75,7 @@ public class GM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // checker for upgrading
         if(CameraSwitcher.IsCameraActive(villageCamera) | CameraSwitcher.IsCameraActive(pivotCamera))
         {
@@ -85,40 +93,29 @@ public class GM : MonoBehaviour
             StartCoroutine(currentSelectedVillagePiece.MovementDown());
         }
         // If the player enters the upgrade hall which for now is an Input of Spacebar
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        Debug.Log(CameraSwitcher.activeCamera);
+        if (CameraSwitcher.IsCameraActive(pivotCamera) & Input.GetKey(KeyCode.Escape)) // The player decided to exit upgrade
         {
-            if(CameraSwitcher.IsCameraActive(gameplayCamera))   // Am I currently In Game View?
+            UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = true;
+            CameraSwitcher.SwitchCamera(villageCamera);
+            StartCoroutine(currentSelectedVillagePiece.MovementDown());
+            currentSelectedVillagePiece = null;
+            UpgradeHelper.GetComponent<UpgradeDetection_Helper>().hitMovingObject = null;
+        }
+
+
+        if (CameraSwitcher.IsCameraActive(villageCamera))
+        {
+            if(Input.GetKeyDown(KeyCode.Q))
             {
-                // change the current camera to be the upgradecamera (Village Camera View)
-                CameraSwitcher.SwitchCamera(villageCamera);
-                // Turn off Player Input On PC 
-                PC.GetComponent<PC_3D_Controller>().enabled = false;
-                // Turn on my Camera animation handler - Of type Script
-                UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = true;
-                currentSelectedVillagePiece = null;
-            }
-            else if(CameraSwitcher.IsCameraActive(villageCamera))   // Am I currently using the Upgrade Village System?
-            {
+                PC.isMovingAwayFromTownHall = true;
                 // We have exited Upgrading lets go back to gameplay View
                 CameraSwitcher.SwitchCamera(gameplayCamera);
-                // Turn the player script back on to control again
-                PC.GetComponent<PC_3D_Controller>().enabled=true;
                 // we switched cameras so we no longer need this to be active
                 UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = false;
-            }
-            else if (CameraSwitcher.IsCameraActive(gameplayCamera) | CameraSwitcher.IsCameraActive(villageCamera) & currentlyUpgrading) // The player decided to click an object
-            {
-                UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = false;
-                CameraSwitcher.SwitchCamera(pivotCamera);
-                PC.GetComponent<PC_3D_Controller>().enabled = false;
-                Transform cameraParent = gameplayCamera.transform.parent.transform;
-
-                CameraSwitcher.SwitchCamera(gameplayCamera);
-                pivotCamera.transform.parent = cameraParent;
-                pivotCamera.transform.position = pivotCamStartPos;
-            }
+            } 
         }
+
     }
 
     IEnumerator CameraChecker()

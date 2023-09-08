@@ -250,13 +250,14 @@ public class VillageItem : MonoBehaviour
     {
         while (!isMoving)
         {
-            step = smoothSpeed * Time.deltaTime / 2;
+            step = smoothSpeed * Time.deltaTime;
             float distanceToTarget = Vector3.Distance(transform.position, startPosition);
 
             if (distanceToTarget <= step)
             {
                 transform.position = startPosition;
                 isMoving = false;
+                
                 transform.SetParent(parentHolder, true);
             }
             else

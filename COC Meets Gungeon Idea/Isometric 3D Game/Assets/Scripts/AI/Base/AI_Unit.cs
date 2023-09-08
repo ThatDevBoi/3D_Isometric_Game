@@ -7,7 +7,7 @@ using UnityEngine;
 public class AI_Unit : MonoBehaviour
 {
     public AIStates state;
-    
+    public AI_Attack AttackType;
 
     public Transform nearestTarget;
 
@@ -17,9 +17,8 @@ public class AI_Unit : MonoBehaviour
 
     Rigidbody physics;
 
+    // State Supports
     float HP;
-
-    public AI_Attack AttackType;
     float lastFireTime;
 
     // Start is called before the first frame update
@@ -49,42 +48,8 @@ public class AI_Unit : MonoBehaviour
 
         nearestTarget = GM.Instance.GetNearestDefense(transform.position);
 
-        //// Check for destroyed Transforms and remove them from the list
-        //for (int i = AllDefences.Count - 1; i >= 0; i--)
-        //{
-        //    if (AllDefences[i] == null)
-        //    {
-        //        AllDefences.RemoveAt(i);
-        //    }
-        //}
-
-        //// Get the nearest defense Transform
-        //nearestTarget = NearestDefence();
     }
-    // Obtain the nearest enemy in a List of Objects
-    //Transform NearestDefence()
-    //{
-    //    if (nearestTarget == null || !AllDefences.Contains(nearestTarget.gameObject))
-    //    {
-    //        nearestTarget = null; // Reset nearestTarget to null if it's no longer in the list
 
-    //        for (int i = 0; i < AllDefences.Count; i++)
-    //        {
-    //            if (AllDefences[i] != null)
-    //            {
-    //                dist = Vector3.Distance(gameObject.transform.position, AllDefences[i].transform.position);
-    //            }
-
-    //            if (dist < distance)
-    //            {
-    //                nearestTarget = AllDefences[i].transform;
-    //                distance = dist;
-    //            }
-    //        }
-    //    }
-
-    //    return nearestTarget; ;
-    //}
 
     void MoveTowardsDefence()
     {
