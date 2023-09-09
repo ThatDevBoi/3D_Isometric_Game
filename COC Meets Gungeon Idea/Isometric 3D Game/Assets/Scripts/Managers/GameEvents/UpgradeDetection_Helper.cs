@@ -23,6 +23,12 @@ public class UpgradeDetection_Helper : MonoBehaviour
 
     public LayerMask CanHit;
 
+    [SerializeField]private Vector3 originalCameraPosition;
+    [SerializeField]private Quaternion originalCameraRotation;
+    
+
+
+
     void Start()
     {
         gameManager = FindObjectOfType<GM>();
@@ -41,6 +47,7 @@ public class UpgradeDetection_Helper : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, CanHit) && hitMovingObject == null)
             {
+                //cameraPivotPoint = hit.transform.GetChild(0).transform.GetChild(4).transform;
                 hitMovingObject = hit.transform.gameObject;
                 CameraSwitcher.SwitchCamera(pivotCam);
                 hit.collider.transform.gameObject.GetComponent<VillageItem>().StartMoving();
@@ -52,9 +59,30 @@ public class UpgradeDetection_Helper : MonoBehaviour
 
     void CameraSettings(RaycastHit hit)
     {
-        hitObjectCameraPivoter = hit.collider.gameObject.transform.GetChild(0).GetChild(4).GetComponent<Transform>();
-        pivotCam.LookAt = hitObjectCameraPivoter;
-        pivotCam.transform.parent = hitObjectCameraPivoter.transform;
+
+
+        //hitObjectCameraPivoter = hit.collider.gameObject.transform.GetChild(0).GetChild(4).GetComponent<Transform>();
+        //pivotCam.LookAt = hitObjectCameraPivoter;
+        //pivotCam.transform.parent = hitObjectCameraPivoter.transform;
         pivotCam.enabled = true;
+        pivotCam.LookAt = hit.transform;
+        pivotCam.Follow = hit.transform;
+
+        //Store the original camera position and rotation
+        if (originalCameraPosition == Vector3.zero || originalCameraRotation == null) // Check if they are null
+        {
+            originalCameraPosition = pivotCam.transform.position;
+            originalCameraRotation = pivotCam.transform.rotation;
+        }
+    }
+
+    // Add this method to reset the camera position and rotation
+    public void ResetCamera()
+    {
+        if (originalCameraPosition != null && originalCameraRotation != null)
+        {
+            pivotCam.transform.position = originalCameraPosition;
+            pivotCam.transform.rotation = originalCameraRotation;
+        }
     }
 }

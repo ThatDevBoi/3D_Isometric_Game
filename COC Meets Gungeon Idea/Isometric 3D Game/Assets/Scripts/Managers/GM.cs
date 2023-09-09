@@ -178,7 +178,11 @@ public class GM : MonoBehaviour
         UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = true;
         CameraSwitcher.SwitchCamera(villageCamera);
         StartCoroutine(currentSelectedVillagePiece.MovementDown());
+        pivotCamera.Follow = null;
+        pivotCamera.LookAt = null;
         currentSelectedVillagePiece = null;
         UpgradeHelper.GetComponent<UpgradeDetection_Helper>().hitMovingObject = null;
+
+        UpgradeHelper.GetComponent<UpgradeDetection_Helper>().ResetCamera();
     }
 }

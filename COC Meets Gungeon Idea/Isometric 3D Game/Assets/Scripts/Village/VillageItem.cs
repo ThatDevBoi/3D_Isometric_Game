@@ -27,18 +27,24 @@ public class VillageItem : MonoBehaviour
     public Stats Stats;
     public GM gameManager;
     public CinemachineVirtualCamera pivotCamera;
-    [SerializeField]
-    Transform pivotRotateEmpty;
+
+
+    //[SerializeField]
+    //Transform pivotRotateEmpty;
+
+    // Movement Values On Rotation
     [SerializeField]
     Vector3 startPosition;
     public Vector3 endposition;
     float smoothSpeed = 15f;
-    public float rotSpeed = 10f;
     bool isMoving = false;
-    Transform parentHolder;
     float step;
+    //public float rotSpeed = 10f;
+
+    //Transform parentHolder;
+
     [SerializeField]
-    bool startRotate;
+    //bool startRotate;
 
     public GameObject ProjectilePrefab;
     public float arrowSpeed = 10f;
@@ -49,6 +55,12 @@ public class VillageItem : MonoBehaviour
     Transform firePosition;
 
     public int HP;
+
+
+    public float followSpeed = 5f; // Speed at which the camera follows the object
+    public float orbitSpeed = 30f; // Speed of orbit in degrees per second
+
+    [SerializeField] bool isOrbiting = false;
 
 
     private void Start()
@@ -64,14 +76,14 @@ public class VillageItem : MonoBehaviour
 
         endposition = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
         startPosition = transform.position;
-        parentHolder = gameObject.transform.parent;
+        //parentHolder = gameObject.transform.parent;
 
-        GameObject PivotClone = new GameObject("Pivot");
-        PivotClone.transform.parent = transform.GetChild(0);
-        PivotClone.transform.localPosition = new Vector3(1.1f, 2, -1f);
+        //GameObject PivotClone = new GameObject("Pivot");
+        //PivotClone.transform.parent = transform.GetChild(0);
+        //PivotClone.transform.localPosition = new Vector3(1.1f, 2, -1f);
 
 
-        pivotRotateEmpty = PivotClone.transform;
+        //pivotRotateEmpty = PivotClone.transform;
 
         //pivotRotateEmpty = gameObject.transform.GetChild(0).GetComponent<Transform>();
 
@@ -107,9 +119,10 @@ public class VillageItem : MonoBehaviour
         if (isMoving)
             StartCoroutine(MovementUpAndCenter());
 
-        if (startRotate)
+        if (isOrbiting)
         {
-            pivotRotateEmpty.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
+            Orbit();
+            //pivotRotateEmpty.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
         }
         else
         {
@@ -121,6 +134,40 @@ public class VillageItem : MonoBehaviour
             Destroy(gameObject);
 
     }
+
+    #region Camera Rotation
+
+    void Orbit()
+    {
+        if (gameObject != null && pivotCamera != null)
+        {
+            // Calculate the camera's position to smoothly follow the object
+            Vector3 targetPosition = Vector3.Lerp(pivotCamera.transform.position, gameObject.transform.position, followSpeed * Time.deltaTime);
+            pivotCamera.transform.position = targetPosition;
+
+            // Rotate the virtual camera around the defense object
+            pivotCamera.transform.RotateAround(gameObject.transform.position, Vector3.up, orbitSpeed * Time.deltaTime);
+        }
+    }
+
+    public void StartOrbit()
+    {
+        if (pivotCamera != null && gameObject != null)
+        {
+            isOrbiting = true;
+        }
+    }
+
+    public void StopOrbit()
+    {
+        if (pivotCamera != null)
+        {
+            isOrbiting = false;
+        }
+    }
+    #endregion
+
+
     #region Field Of View Radius / Shooting Logic
     IEnumerator FindTargetWithDelay(float delay)
     {
@@ -211,7 +258,7 @@ public class VillageItem : MonoBehaviour
     public void StartMoving()
     {
         isMoving = true;
-        parentHolder = gameObject.transform.parent;
+        //parentHolder = gameObject.transform.parent;
         transform.SetParent(null, true);
     }
 
@@ -231,8 +278,8 @@ public class VillageItem : MonoBehaviour
             {
                 transform.position = targetPosition;
                 isMoving = false;
-                transform.SetParent(parentHolder, true);
-                startRotate = true;
+                //transform.SetParent(parentHolder, true);
+                isOrbiting = true;
             }
             else
             {
@@ -257,13 +304,13 @@ public class VillageItem : MonoBehaviour
             {
                 transform.position = startPosition;
                 isMoving = false;
-                
-                transform.SetParent(parentHolder, true);
+                isOrbiting = false;
+                //transform.SetParent(parentHolder, true);
             }
             else
             {
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, step);
-                startRotate = false;
+
             }
 
             yield return null;
