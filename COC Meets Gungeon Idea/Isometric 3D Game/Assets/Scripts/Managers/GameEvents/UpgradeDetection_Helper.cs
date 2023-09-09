@@ -2,15 +2,14 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class UpgradeDetection_Helper : MonoBehaviour
 {
     public Camera VilOverviewCam;
     [SerializeField]
-    Transform hitObjectCameraPivoter;  // Obtained during runtime
+    Transform hitObjectCameraPivoter;
     public GameObject hitMovingObject;
-    public CinemachineVirtualCamera pivotCam;   // Apply manually until finished 
+    public CinemachineVirtualCamera pivotCam;
     public GM gameManager;
 
     public float movementSpeedToUpgradeView = 2;
@@ -20,57 +19,42 @@ public class UpgradeDetection_Helper : MonoBehaviour
     public Vector3 startPosition = Vector3.zero;
     public Vector3 endPosition = Vector3.zero;
     [HideInInspector]
-    public Transform interactableObject;   // Object we move during animation 
+    public Transform interactableObject;
 
     public LayerMask CanHit;
-    // Start is called before the first frame update
+
     void Start()
     {
-        gameManager = GameObject.FindFirstObjectByType<GM>() as GM;
+        gameManager = FindObjectOfType<GM>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         RaycastClickDetection();
-
     }
 
     void RaycastClickDetection()
     {
-        if(Input.GetMouseButtonDown(0) & gameManager.currentlyUpgrading /*&& !EventSystem.current.IsPointerOverGameObject()*/)
+        if (Input.GetMouseButtonDown(0) && gameManager.currentlyUpgrading)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity, CanHit) && hitMovingObject == null)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, CanHit) && hitMovingObject == null)
             {
                 hitMovingObject = hit.transform.gameObject;
-                //Debug.Log(hit.collider.name);
-                //startPosition = hit.transform.position;
-
-                //interactableObject = hit.transform;
-
-                //interactableRigibody = interactableObject.GetComponent<Rigidbody>();
-                //selectedPiece = true;
                 CameraSwitcher.SwitchCamera(pivotCam);
                 hit.collider.transform.gameObject.GetComponent<VillageItem>().StartMoving();
-
                 gameManager.currentSelectedVillagePiece = hit.transform.gameObject.GetComponent<VillageItem>();
-
                 CameraSettings(hit);
-
             }
         }
-
     }
 
     void CameraSettings(RaycastHit hit)
     {
-        // Obtain the Pivot Holder
         hitObjectCameraPivoter = hit.collider.gameObject.transform.GetChild(0).GetChild(4).GetComponent<Transform>();
-        // set up the camera vars 
         pivotCam.LookAt = hitObjectCameraPivoter;
-        pivotCam.transform.parent = hitObjectCameraPivoter.transform;   // child cam to pivot point 
+        pivotCam.transform.parent = hitObjectCameraPivoter.transform;
         pivotCam.enabled = true;
     }
 }
