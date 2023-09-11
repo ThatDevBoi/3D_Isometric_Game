@@ -10,20 +10,19 @@ using UnityEngine.EventSystems;
 // Makes sure each element is set in place the correct way
 public class GM : MonoBehaviour
 {
-    public static GM Instance { get; private set; }
-    private List<AI_Unit> aiUnits = new List<AI_Unit>();
-    private List<Transform> defenseTransforms = new List<Transform>();
-
+    public static GM Instance { get; private set; } // Singleton
+    private List<AI_Unit> aiUnits = new List<AI_Unit>();    // List of All deployed AI Troops
+    private List<Transform> defenseTransforms = new List<Transform>();  // List of all Defence Towers
+    // Player Controller Class Reference
     private PC_3D_Controller PC;
-
+    [Tooltip("Flag to check if the player is inside the Uogade Menu")]
     public bool currentlyUpgrading = false;
-
+    [Tooltip("VCamera References to all Cameras that change on Runtime")]
     public CinemachineVirtualCamera gameplayCamera, villageCamera, pivotCamera;
 
     [Header("Script Helpers")]
-    public GameObject UpgradeHelper;
+    public UpgradeDetection_Helper UpgradeHelper;
     public VillageItem currentSelectedVillagePiece;
-    Vector3 pivotCamStartPos;
 
     #region Enable/Disable
     private void OnEnable()
@@ -57,6 +56,7 @@ public class GM : MonoBehaviour
     void Start()
     {
         PC = FindObjectOfType<PC_3D_Controller>();
+        UpgradeHelper = FindObjectOfType<UpgradeDetection_Helper>();
 
         if (PC == null)
         {
@@ -64,12 +64,14 @@ public class GM : MonoBehaviour
         }
         else
             return;
-
-        pivotCamStartPos = pivotCamera.transform.position;
     }
 
     void Update()
     {
+        if (CameraSwitcher.IsCameraActive(gameplayCamera))
+            UpgradeHelper.GetComponent<UpgradeDetection_Helper>().currentState = UpgradeDetection_Helper.DefenseState.None;
+            
+
         if (CameraSwitcher.IsCameraActive(villageCamera) || CameraSwitcher.IsCameraActive(pivotCamera))
         {
             currentlyUpgrading = true;
@@ -77,20 +79,17 @@ public class GM : MonoBehaviour
         else
         {
             currentlyUpgrading = false;
-            UpgradeHelper.GetComponent<UpgradeDetection_Helper>().hitMovingObject = null;
+
         }
 
-        if (currentSelectedVillagePiece != null && CameraSwitcher.activeCamera == gameplayCamera)
+        if (CameraSwitcher.IsCameraActive(pivotCamera) && Input.GetKey(KeyCode.Escape) &
+            UpgradeHelper.currentState == UpgradeDetection_Helper.DefenseState.Orbitting & UpgradeHelper.cameraBrain.IsBlending == false)
         {
-            currentSelectedVillagePiece.GetComponent<VillageItem>();
-            StartCoroutine(currentSelectedVillagePiece.MovementDown());
-        }
+            ExitUpgrade(); // -> Remove 
+            UpgradeHelper.GetComponent<UpgradeDetection_Helper>().orbitingIsDone = true;
 
-        if (CameraSwitcher.IsCameraActive(pivotCamera) && Input.GetKey(KeyCode.Escape))
-        {
-            ExitUpgrade();
-        }
 
+        }
         if (CameraSwitcher.IsCameraActive(villageCamera))
         {
             if (Input.GetKeyDown(KeyCode.Q))
@@ -176,13 +175,7 @@ public class GM : MonoBehaviour
     void ExitUpgrade()
     {
         UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = true;
-        CameraSwitcher.SwitchCamera(villageCamera);
-        StartCoroutine(currentSelectedVillagePiece.MovementDown());
-        pivotCamera.Follow = null;
-        pivotCamera.LookAt = null;
         currentSelectedVillagePiece = null;
-        UpgradeHelper.GetComponent<UpgradeDetection_Helper>().hitMovingObject = null;
 
-        UpgradeHelper.GetComponent<UpgradeDetection_Helper>().ResetCamera();
     }
 }

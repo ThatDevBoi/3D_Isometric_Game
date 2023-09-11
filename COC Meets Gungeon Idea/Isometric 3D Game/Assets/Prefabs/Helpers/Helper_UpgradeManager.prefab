@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6032281981175249704
 MonoBehaviour:
@@ -39,22 +39,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4269573550472734503}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f32b6a5b0edef624ea11cb5285b39ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VilOverviewCam: {fileID: 0}
-  hitObjectCameraPivoter: {fileID: 0}
-  hitMovingObject: {fileID: 0}
   pivotCam: {fileID: 0}
   gameManager: {fileID: 0}
-  movementSpeedToUpgradeView: 20
-  desiredHeightToUpgradeView: 2.5
-  selectedPiece: 0
-  startPosition: {x: 0, y: 0, z: 0}
-  endPosition: {x: 0, y: 2.5, z: 0}
-  interactableObject: {fileID: 0}
+  movementSpeedToUpgradeView: 4
   CanHit:
     serializedVersion: 2
     m_Bits: 64
+  currentState: 0
+  desiredHeight: 10
+  defenseTransform: {fileID: 0}
+  orbitingIsDone: 0
+  cameraBrain: {fileID: 0}
+  orbitSpeed: 10
