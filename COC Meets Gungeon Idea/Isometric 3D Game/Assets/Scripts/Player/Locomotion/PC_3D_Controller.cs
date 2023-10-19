@@ -35,9 +35,30 @@ namespace Main.Player_Locomotion
 
         public TextMeshPro interactiveText;
 
+        // animations
+        public Animator animator;
+
+        // Enum to represent movement states
+        public enum MovementState
+        {
+            Idle,
+            WalkingSlow,
+            WalkingQuick,
+            Running
+        }
+
+        public MovementState currentMovementState = MovementState.Idle;
+
+        public float movementInputValue = 0f; // The input value to control movement animations
+        public float walkSpeed = 2f; // Adjust the speed for walking
+        public float jogSpeed = 3f;
+        public float runSpeed = 5f; // Adjust the speed for running
+
         void Start()
         {
-            playerMaterial = GetComponent<Renderer>().material;
+            playerMaterial = transform.GetChild(0).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material; // with mesh
+            animator = transform.GetChild(0).GetComponent<Animator>();
+            //playerMaterial = GetComponent<Renderer>().material; // before mesh
             originalColor = playerMaterial.color;
 
             interactiveText.enabled = false;
@@ -106,6 +127,10 @@ namespace Main.Player_Locomotion
             }
         }
 
+        public float maxIndependentValue = 5.0f; // Define a maximum value for the independent value
+        public float independentIncreaseSpeed = 1.0f; // Control how fast it increases
+        public float independentDecreaseSpeed = 1.0f; // Control how fast it decreases
+        public float independentValue;
         void Update()
         {
             GatherInput_Motion();
@@ -130,10 +155,43 @@ namespace Main.Player_Locomotion
             {
                 isMovingTowardsTownHall = true;
             }
+
+            float currentInputValue = InputVec.magnitude;
+
+            // Gradually increase the independent value based on player input
+            if (currentInputValue > 0)
+            {
+                independentValue = Mathf.Min(independentValue + independentIncreaseSpeed * Time.deltaTime, maxIndependentValue);
+            }
+            else
+            {
+                // Gradually decrease the independent value when there's no input
+                independentValue = 0;//Mathf.Max(independentValue - independentDecreaseSpeed * Time.deltaTime, 0.0f);
+            }
+
+            // Check input and transition between states based on movementInputValue
+            if (Input.GetKey(KeyCode.LeftShift) && movementInputValue > 0)
+            {
+                TransitionToState(MovementState.Running);
+            }
+            else if (independentValue > 0)
+            {
+                currentMovementState = MovementState.WalkingSlow;
+            }
+            else if(independentValue > 2)
+            {
+                currentMovementState = MovementState.WalkingQuick;
+            }
+            else
+            {
+                currentMovementState = MovementState.Idle;
+            }
+            animator.SetFloat("MovementSpeed", independentValue);
         }
 
         private void FixedUpdate()
         {
+            SetMovementSpeed();
             if (isMovingTowardsTownHall)
             {
                 EnteringTownHall(true, FadeObjectTransform.position);
@@ -149,7 +207,9 @@ namespace Main.Player_Locomotion
             if (isGrounded)
             {
                 InputVec = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                movementInputValue = InputVec.magnitude;
             }
+
         }
 
         void Look()
@@ -165,7 +225,40 @@ namespace Main.Player_Locomotion
         void Move()
         {
             player_RB.MovePosition(transform.position + (transform.forward * InputVec.magnitude) * movement_Velocity * Time.deltaTime);
+
+            //
         }
+
+        float previousMovementInputValue = 0f; // Variable to store the previous value of movementInputValue
+
+        void SetMovementSpeed()
+        {
+            switch (currentMovementState)
+            {
+                case MovementState.Idle:
+                    //movement_Velocity = 0;          
+                    break;
+
+                case MovementState.WalkingSlow:
+                    movement_Velocity = walkSpeed; // Adjust as needed
+                    break;
+                case MovementState.WalkingQuick:
+                    movement_Velocity = jogSpeed; // Adjust as needed
+                    break;
+                case MovementState.Running:
+                    movement_Velocity = runSpeed;
+                    break;
+            }
+        }
+
+        void TransitionToState(MovementState newState)
+        {
+            if (currentMovementState != newState)
+            {
+                currentMovementState = newState;
+            }
+        }
+
 
         void Jump()
         {
