@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Dummy|Draw Weapon
+      name: Draw Weapon
       takeName: Dummy|Draw Weapon
       internalID: -2139180421793369752
       firstFrame: 0
@@ -62,7 +62,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|First Slash Inward Normal
+      name: First Slash Inward Normal
       takeName: Dummy|First Slash Inward Normal
       internalID: -7644253523797829988
       firstFrame: 0
@@ -73,9 +73,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -91,7 +91,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|First Strike Inward Struggling
+      name: First Strike Inward Struggling
       takeName: Dummy|First Strike Inward Struggling
       internalID: -8391004276325479870
       firstFrame: 0
@@ -102,7 +102,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -120,7 +120,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|First Strike Inward Weak
+      name: First Strike Inward Weak
       takeName: Dummy|First Strike Inward Weak
       internalID: -5210740007719453285
       firstFrame: 0
@@ -131,7 +131,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -149,7 +149,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|First Strike Normal Outward
+      name: First Strike Normal Outward
       takeName: Dummy|First Strike Normal Outward
       internalID: -3112982390742054455
       firstFrame: 0
@@ -160,8 +160,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -178,7 +178,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|First Strike Outward Struggling
+      name: First Strike Outward Struggling
       takeName: Dummy|First Strike Outward Struggling
       internalID: 4578730646624788404
       firstFrame: 0
@@ -189,8 +189,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -207,7 +207,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|First Strike Outward Weak
+      name: First Strike Outward Weak
       takeName: Dummy|First Strike Outward Weak
       internalID: -1372455056313087202
       firstFrame: 0
@@ -218,8 +218,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -236,7 +236,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 10 Degrees Normal
+      name: Inward Strike 10 Degrees Normal
       takeName: Dummy|Inward Strike 10 Degrees Normal
       internalID: 1534243574219831198
       firstFrame: 0
@@ -247,9 +247,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -265,7 +265,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 10 Degrees Struggling
+      name: Inward Strike 10 Degrees Struggling
       takeName: Dummy|Inward Strike 10 Degrees Struggling
       internalID: -4358425208022362204
       firstFrame: 0
@@ -276,7 +276,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -294,7 +294,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 10 Degrees Weak
+      name: Inward Strike 10 Degrees Weak
       takeName: Dummy|Inward Strike 10 Degrees Weak
       internalID: 6145801196598143638
       firstFrame: 0
@@ -305,7 +305,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -323,7 +323,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 20 Degrees Normal
+      name: Inward Strike 20 Degrees Normal
       takeName: Dummy|Inward Strike 20 Degrees Normal
       internalID: -5639972508604569004
       firstFrame: 0
@@ -334,9 +334,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -352,7 +352,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 20 Degrees Struggling
+      name: Inward Strike 20 Degrees Struggling
       takeName: Dummy|Inward Strike 20 Degrees Struggling
       internalID: -3153277175281117949
       firstFrame: 0
@@ -363,7 +363,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -381,7 +381,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 20 Degrees Weak
+      name: Inward Strike 20 Degrees Weak
       takeName: Dummy|Inward Strike 20 Degrees Weak
       internalID: 8820500280476877350
       firstFrame: 0
@@ -392,7 +392,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -410,7 +410,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 30 Degrees Normal
+      name: Inward Strike 30 Degrees Normal
       takeName: Dummy|Inward Strike 30 Degrees Normal
       internalID: -3624669139863518957
       firstFrame: 0
@@ -421,9 +421,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -439,7 +439,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 30 Degrees Struggling
+      name: Inward Strike 30 Degrees Struggling
       takeName: Dummy|Inward Strike 30 Degrees Struggling
       internalID: 8146975138978548032
       firstFrame: 0
@@ -450,7 +450,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -468,7 +468,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 30 Degrees Weak
+      name: Inward Strike 30 Degrees Weak
       takeName: Dummy|Inward Strike 30 Degrees Weak
       internalID: -4375128699288689665
       firstFrame: 0
@@ -479,7 +479,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -497,7 +497,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 40 Degrees Normal
+      name: Inward Strike 40 Degrees Normal
       takeName: Dummy|Inward Strike 40 Degrees Normal
       internalID: -1270031935084952059
       firstFrame: 0
@@ -508,9 +508,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -526,7 +526,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 40 Degrees Struggling
+      name: Inward Strike 40 Degrees Struggling
       takeName: Dummy|Inward Strike 40 Degrees Struggling
       internalID: 7330787211202572418
       firstFrame: 0
@@ -537,7 +537,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -555,7 +555,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 40 Degrees Weak
+      name: Inward Strike 40 Degrees Weak
       takeName: Dummy|Inward Strike 40 Degrees Weak
       internalID: -7757729184815018554
       firstFrame: 0
@@ -566,7 +566,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -584,7 +584,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 60 Degrees Normal
+      name: Inward Strike 60 Degrees Normal
       takeName: Dummy|Inward Strike 60 Degrees Normal
       internalID: -2313622946153896448
       firstFrame: 0
@@ -595,9 +595,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -613,7 +613,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 60 Degrees Struggling
+      name: Inward Strike 60 Degrees Struggling
       takeName: Dummy|Inward Strike 60 Degrees Struggling
       internalID: -1012752124426305801
       firstFrame: 0
@@ -624,7 +624,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -642,7 +642,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 60 Degrees Weak
+      name: Inward Strike 60 Degrees Weak
       takeName: Dummy|Inward Strike 60 Degrees Weak
       internalID: 1393499106502524331
       firstFrame: 0
@@ -653,7 +653,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -671,7 +671,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 70 Degrees Normal
+      name: Inward Strike 70 Degrees Normal
       takeName: Dummy|Inward Strike 70 Degrees Normal
       internalID: -4317423100791275447
       firstFrame: 0
@@ -682,9 +682,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -700,7 +700,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 70 Degrees Struggling
+      name: Inward Strike 70 Degrees Struggling
       takeName: Dummy|Inward Strike 70 Degrees Struggling
       internalID: -256807334305824606
       firstFrame: 0
@@ -711,7 +711,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -729,7 +729,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 70 Degrees Weak
+      name: Inward Strike 70 Degrees Weak
       takeName: Dummy|Inward Strike 70 Degrees Weak
       internalID: -6349799129702249136
       firstFrame: 0
@@ -740,7 +740,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -758,7 +758,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 80 Degrees Normal
+      name: Inward Strike 80 Degrees Normal
       takeName: Dummy|Inward Strike 80 Degrees Normal
       internalID: 7564933534758357406
       firstFrame: 0
@@ -769,9 +769,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -787,7 +787,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 80 Degrees Struggling
+      name: Inward Strike 80 Degrees Struggling
       takeName: Dummy|Inward Strike 80 Degrees Struggling
       internalID: -7258812382846917093
       firstFrame: 0
@@ -798,7 +798,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -816,7 +816,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 80 Degrees Weak
+      name: Inward Strike 80 Degrees Weak
       takeName: Dummy|Inward Strike 80 Degrees Weak
       internalID: 3941895519654394138
       firstFrame: 0
@@ -827,7 +827,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -845,7 +845,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 90 Degrees Normal
+      name: Inward Strike 90 Degrees Normal
       takeName: Dummy|Inward Strike 90 Degrees Normal
       internalID: 3456018379078610123
       firstFrame: 0
@@ -856,9 +856,9 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -874,7 +874,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 90 Degrees Struggling
+      name: Inward Strike 90 Degrees Struggling
       takeName: Dummy|Inward Strike 90 Degrees Struggling
       internalID: 8016407058790063215
       firstFrame: 0
@@ -885,7 +885,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -903,7 +903,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Inward Strike 90 Degrees Weak
+      name: Inward Strike 90 Degrees Weak
       takeName: Dummy|Inward Strike 90 Degrees Weak
       internalID: 5564381280870036560
       firstFrame: 0
@@ -914,7 +914,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -932,7 +932,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Normal Idle
+      name: Normal Idle
       takeName: Dummy|Normal Idle
       internalID: -2084653788145000189
       firstFrame: 0
@@ -961,7 +961,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 10 Degrees Normal
+      name: Outward Strike 10 Degrees Normal
       takeName: Dummy|Outward Strike 10 Degrees Normal
       internalID: -8362756681576078456
       firstFrame: 0
@@ -972,8 +972,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -990,7 +990,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 10 Degrees Struggling
+      name: Outward Strike 10 Degrees Struggling
       takeName: Dummy|Outward Strike 10 Degrees Struggling
       internalID: 7078832545689410888
       firstFrame: 0
@@ -1001,8 +1001,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1019,7 +1019,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 10 Degrees Weak
+      name: Outward Strike 10 Degrees Weak
       takeName: Dummy|Outward Strike 10 Degrees Weak
       internalID: -496618758735691480
       firstFrame: 0
@@ -1030,8 +1030,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1048,7 +1048,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 20 Degrees Normal
+      name: Outward Strike 20 Degrees Normal
       takeName: Dummy|Outward Strike 20 Degrees Normal
       internalID: -3710843927771143556
       firstFrame: 0
@@ -1059,8 +1059,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1077,7 +1077,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 20 Degrees Struggling
+      name: Outward Strike 20 Degrees Struggling
       takeName: Dummy|Outward Strike 20 Degrees Struggling
       internalID: -4787531176934593446
       firstFrame: 0
@@ -1088,8 +1088,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1106,7 +1106,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 20 Degrees Weak
+      name: Outward Strike 20 Degrees Weak
       takeName: Dummy|Outward Strike 20 Degrees Weak
       internalID: -2017693258683909941
       firstFrame: 0
@@ -1117,8 +1117,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1135,7 +1135,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 30 Degrees Normal
+      name: Outward Strike 30 Degrees Normal
       takeName: Dummy|Outward Strike 30 Degrees Normal
       internalID: -1962627893555753545
       firstFrame: 0
@@ -1146,8 +1146,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1164,7 +1164,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 30 Degrees Struggling
+      name: Outward Strike 30 Degrees Struggling
       takeName: Dummy|Outward Strike 30 Degrees Struggling
       internalID: -3491458663469915511
       firstFrame: 0
@@ -1175,8 +1175,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1193,7 +1193,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 30 Degrees Weak
+      name: Outward Strike 30 Degrees Weak
       takeName: Dummy|Outward Strike 30 Degrees Weak
       internalID: -3578027295986152851
       firstFrame: 0
@@ -1204,8 +1204,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1222,7 +1222,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 40 Degrees Normal
+      name: Outward Strike 40 Degrees Normal
       takeName: Dummy|Outward Strike 40 Degrees Normal
       internalID: 1384151114871006329
       firstFrame: 0
@@ -1233,8 +1233,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1251,7 +1251,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 40 Degrees Struggling
+      name: Outward Strike 40 Degrees Struggling
       takeName: Dummy|Outward Strike 40 Degrees Struggling
       internalID: -4788082526231860145
       firstFrame: 0
@@ -1262,8 +1262,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1280,7 +1280,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 40 Degrees Weak
+      name: Outward Strike 40 Degrees Weak
       takeName: Dummy|Outward Strike 40 Degrees Weak
       internalID: 6371921463492392683
       firstFrame: 0
@@ -1291,8 +1291,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1309,7 +1309,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 60 Degrees Normal
+      name: Outward Strike 60 Degrees Normal
       takeName: Dummy|Outward Strike 60 Degrees Normal
       internalID: 7711481768715530046
       firstFrame: 0
@@ -1320,8 +1320,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1338,7 +1338,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 60 Degrees Struggling
+      name: Outward Strike 60 Degrees Struggling
       takeName: Dummy|Outward Strike 60 Degrees Struggling
       internalID: 1500619185036035730
       firstFrame: 0
@@ -1349,8 +1349,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1367,7 +1367,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 60 Degrees Weak
+      name: Outward Strike 60 Degrees Weak
       takeName: Dummy|Outward Strike 60 Degrees Weak
       internalID: -6614011580239840947
       firstFrame: 0
@@ -1378,8 +1378,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1396,7 +1396,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 70 Degrees Normal
+      name: Outward Strike 70 Degrees Normal
       takeName: Dummy|Outward Strike 70 Degrees Normal
       internalID: 8963193992199425582
       firstFrame: 0
@@ -1407,8 +1407,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1425,7 +1425,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 70 Degrees Struggling
+      name: Outward Strike 70 Degrees Struggling
       takeName: Dummy|Outward Strike 70 Degrees Struggling
       internalID: -6209278508032174801
       firstFrame: 0
@@ -1436,8 +1436,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1454,7 +1454,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 70 Degrees Weak
+      name: Outward Strike 70 Degrees Weak
       takeName: Dummy|Outward Strike 70 Degrees Weak
       internalID: -2616878638974086366
       firstFrame: 0
@@ -1465,8 +1465,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1483,7 +1483,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 80 Degrees Normal
+      name: Outward Strike 80 Degrees Normal
       takeName: Dummy|Outward Strike 80 Degrees Normal
       internalID: 4204871465330630336
       firstFrame: 0
@@ -1494,8 +1494,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1512,7 +1512,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 80 Degrees Struggling
+      name: Outward Strike 80 Degrees Struggling
       takeName: Dummy|Outward Strike 80 Degrees Struggling
       internalID: -3954216949474830876
       firstFrame: 0
@@ -1523,8 +1523,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1541,7 +1541,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 80 Degrees Weak
+      name: Outward Strike 80 Degrees Weak
       takeName: Dummy|Outward Strike 80 Degrees Weak
       internalID: 9029945938181220506
       firstFrame: 0
@@ -1552,8 +1552,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1570,7 +1570,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 90 Degrees Normal
+      name: Outward Strike 90 Degrees Normal
       takeName: Dummy|Outward Strike 90 Degrees Normal
       internalID: -9115593772268693688
       firstFrame: 0
@@ -1581,8 +1581,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1599,7 +1599,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 90 Degrees Struggling
+      name: Outward Strike 90 Degrees Struggling
       takeName: Dummy|Outward Strike 90 Degrees Struggling
       internalID: 9040151674418534220
       firstFrame: 0
@@ -1610,8 +1610,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1628,7 +1628,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Outward Strike 90 Degrees Weak
+      name: Outward Strike 90 Degrees Weak
       takeName: Dummy|Outward Strike 90 Degrees Weak
       internalID: 1289638562295548257
       firstFrame: 0
@@ -1639,8 +1639,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
+      loopTime: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1657,7 +1657,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Running
+      name: Running
       takeName: Dummy|Running
       internalID: -3590786275070788895
       firstFrame: 0
@@ -1686,7 +1686,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Sheath Weapon
+      name: Sheath Weapon
       takeName: Dummy|Sheath Weapon
       internalID: 6114267963330371601
       firstFrame: 0
@@ -1715,7 +1715,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Start Walking
+      name: Start Walking
       takeName: Dummy|Start Walking
       internalID: 2233100119772163791
       firstFrame: 0
@@ -1744,7 +1744,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Struggling Idle
+      name: Struggling Idle
       takeName: Dummy|Struggling Idle
       internalID: 6808339204706879039
       firstFrame: 0
@@ -1802,7 +1802,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Walking Quick
+      name: Walking Quick
       takeName: Dummy|Walking Quick
       internalID: 4678030959844813771
       firstFrame: 0
@@ -1831,7 +1831,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Walking Slow
+      name: Walking Slow
       takeName: Dummy|Walking Slow
       internalID: 3946662787865559153
       firstFrame: 0
@@ -1860,7 +1860,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dummy|Weak Idle
+      name: Weak Idle
       takeName: Dummy|Weak Idle
       internalID: 8015398509034689994
       firstFrame: 0

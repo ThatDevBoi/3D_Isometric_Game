@@ -54,6 +54,38 @@ namespace Main.Player_Locomotion
         public float jogSpeed = 3f;
         public float runSpeed = 5f; // Adjust the speed for running
 
+        // Melee Combat
+        public bool isSwordShefed = true;
+
+        List<string> playedAnimations = new List<string>();
+
+        string[] allAnimationClips = new string[]
+        {
+            "Inward Strike 10 Degrees Normal",
+            "Inward Strike 20 Degrees Normal",
+            "Inward Strike 30 Degrees Normal",
+            "Inward Strike 40 Degrees Normal",
+            "Inward Strike 60 Degrees Normal",
+            "Inward Strike 70 Degrees Normal",
+            "Inward Strike 80 Degrees Normal",
+            "Inward Strike 90 Degrees Normal",
+            "Outward Strike 10 Degrees Normal",
+            "Outward Strike 20 Degrees Normal",
+            "Outward Strike 30 Degrees Normal",
+            "Outward Strike 40 Degrees Normal",
+            "Outward Strike 60 Degrees Normal",
+            "Outward Strike 70 Degrees Normal",
+            "Outward Strike 80 Degrees Normal",
+            "Outward Strike 90 Degrees Normal",
+            "First Strike Normal Outward"
+
+        };
+        // Dictionary to map animation names to blend tree values (floats)
+        Dictionary<string, float> animationToBlendTreeValue = new Dictionary<string, float>();
+        bool lastAnimationWasInward = false;
+        bool Attacking = false;
+
+
         void Start()
         {
             playerMaterial = transform.GetChild(0).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material; // with mesh
@@ -70,6 +102,32 @@ namespace Main.Player_Locomotion
             player_RB = gameObject.AddComponent<Rigidbody>();
             player_col = gameObject.AddComponent<BoxCollider>();
             player_RB.constraints = RigidbodyConstraints.FreezeRotation;
+
+
+            // Animation Mapping via floats to blend tree
+            // Assign blend tree values (floats) for each animation
+            // Modify this according to your blend tree values
+            animationToBlendTreeValue.Add("First Slash Inward Normal", 1.0f);
+            animationToBlendTreeValue.Add("Inward Strike 10 Degrees Normal", 2.0f);
+            animationToBlendTreeValue.Add("Inward Strike 20 Degrees Normal", 3.0f);
+            animationToBlendTreeValue.Add("Inward Strike 30 Degrees Normal", 4.0f);
+            animationToBlendTreeValue.Add("Inward Strike 40 Degrees Normal", 5.0f);
+            animationToBlendTreeValue.Add("Inward Strike 60 Degrees Normal", 6.0f);
+            animationToBlendTreeValue.Add("Inward Strike 70 Degrees Normal", 7.0f);
+            animationToBlendTreeValue.Add("Inward Strike 80 Degrees Normal", 8.0f);
+            animationToBlendTreeValue.Add("Inward Strike 90 Degrees Normal", 9.0f);
+
+            animationToBlendTreeValue.Add("Outward Strike 10 Degrees Normal", 10.0f);
+            animationToBlendTreeValue.Add("Outward Strike 20 Degrees Normal", 11.0f);
+            animationToBlendTreeValue.Add("Outward Strike 30 Degrees Normal", 12.0f);
+            animationToBlendTreeValue.Add("Outward Strike 40 Degrees Normal", 13.0f);
+            animationToBlendTreeValue.Add("Outward Strike 60 Degrees Normal", 14.0f);
+            animationToBlendTreeValue.Add("Outward Strike 70 Degrees Normal", 15.0f);
+            animationToBlendTreeValue.Add("Outward Strike 80 Degrees Normal", 16.0f);
+            animationToBlendTreeValue.Add("Outward Strike 90 Degrees Normal", 17.0f);
+            animationToBlendTreeValue.Add("First Strike Normal Outward", 18.0f);
+
+
         }
 
         public void EnteringTownHall(bool isFading, Vector3 DesiredPosition)
@@ -170,9 +228,8 @@ namespace Main.Player_Locomotion
                 // Gradually decrease the independent value when there's no input
                 independentValue = 0;//Mathf.Max(independentValue - independentDecreaseSpeed * Time.deltaTime, 0.0f);
             }
-
             // Check input and transition between states based on movementInputValue
-            if (Input.GetKey(KeyCode.LeftShift) && movementInputValue > 0)
+            if (isSwordShefed == true && Input.GetKey(KeyCode.LeftShift) && movementInputValue > 0)
             {
                 TransitionToState(MovementState.Running);
                 animator.SetBool("Running", true);
@@ -199,6 +256,37 @@ namespace Main.Player_Locomotion
                 return;
             else
                 animator.SetFloat("MovementSpeed", independentValue);
+
+
+            #region Running in combat Checkers
+            bool animSwordBool = animator.GetBool("IsSwordSheath");
+            animSwordBool = isSwordShefed;
+            animator.SetBool("IsSwordSheath", isSwordShefed);
+            #endregion
+            if (Input.GetMouseButtonDown(0))
+            {
+                Attacking = true;
+                animator.SetBool("Attacking", Attacking);
+                if(isSwordShefed)
+                {
+                    DrawSword();
+                }
+                else if(Attacking && !isSwordShefed)
+                {
+                    MeleeAttack();
+                }
+            }
+
+            if(Input.GetMouseButtonUp(0))
+            {
+                Attacking = false;
+                animator.SetBool("Attacking", Attacking);
+            }
+
+
+            if (Input.GetMouseButton(1))
+                StartCoroutine(SheathSword());
+
         }
 
         private void FixedUpdate()
@@ -241,6 +329,118 @@ namespace Main.Player_Locomotion
             //
         }
 
+        void DrawSword()
+        {
+            int drawLayer = animator.GetLayerIndex("Combat Handle");
+            animator.SetLayerWeight(drawLayer, 1);
+            if (isSwordShefed)
+            {
+                animator.Play("Dummy|Draw Weapon");
+            }
+
+
+            Debug.Log("Sword has been drawn");
+
+            isSwordShefed = false;
+        }
+
+        void MeleeAttack()
+        {
+            string selectedAnimation = GetUniqueRandomAnimation();
+            if (selectedAnimation != null)
+            {
+                Debug.Log("Selected Animation: " + selectedAnimation);
+                playedAnimations.Add(selectedAnimation);
+                lastAnimationWasInward = selectedAnimation.Contains("Inward");
+
+                // Set the blend tree parameter based on the dictionary mapping
+                if (animationToBlendTreeValue.ContainsKey(selectedAnimation))
+                {
+                    float animationValue = animationToBlendTreeValue[selectedAnimation];
+                    animator.Play("Slash Cycle", -1, 0f);
+                    animator.SetFloat("CombatDrawFloat", animationValue); // Change "BlendParameter" to your blend tree parameter name
+                }
+                else
+                {
+                    Debug.LogError("Animation value not found for: " + selectedAnimation);
+                }
+            }
+
+        }
+
+
+        string GetUniqueRandomAnimation()
+        {
+            string[] remainingClips = GetRemainingClips();
+
+            // Check if Normal Inward animation hasn't been played yet
+            if (!playedAnimations.Contains("First Slash Inward Normal") && remainingClips.Length > 0)
+            {
+                return "First Slash Inward Normal"; // Play "Normal Inward" first if it's available
+            }
+
+            if (remainingClips.Length > 0)
+            {
+                // Find the next animation based on the alternating pattern
+                foreach (string clip in remainingClips)
+                {
+                    if (lastAnimationWasInward && clip.Contains("Outward"))
+                    {
+                        return clip; // Play an outward animation next
+                    }
+                    else if (!lastAnimationWasInward && clip.Contains("Inward"))
+                    {
+                        return clip; // Play an inward animation next
+                    }
+                }
+
+                // If no suitable animation is found, reset played animations
+                ResetPlayedAnimations();
+                return null;
+            }
+
+            ResetPlayedAnimations();
+            return null;
+
+        }
+
+        string[] GetRemainingClips()
+        {
+            List<string> remaining = new List<string>();
+
+            foreach (string clip in allAnimationClips)
+            {
+                if (!playedAnimations.Contains(clip) && clip != "First Slash Inward Normal")
+                {
+                    remaining.Add(clip);
+                }
+            }
+
+            return remaining.ToArray();
+        }
+
+        void ResetPlayedAnimations()
+        {
+            playedAnimations.Clear();
+        }
+
+        IEnumerator SheathSword()
+        {
+            int drawLayer = animator.GetLayerIndex("Combat Handle");
+
+            animator.SetLayerWeight(drawLayer, 1);
+            animator.Play("Dummy|Sheath Weapon");
+
+            Debug.Log("Sword has been Put Away");
+
+            yield return new WaitForSeconds(1.2f);
+            animator.SetLayerWeight(drawLayer, 0);
+
+            isSwordShefed = true;
+
+            yield break;
+        }
+
         float previousMovementInputValue = 0f; // Variable to store the previous value of movementInputValue
 
         void SetMovementSpeed()
@@ -270,7 +470,6 @@ namespace Main.Player_Locomotion
                 currentMovementState = newState;
             }
         }
-
 
         void Jump()
         {
