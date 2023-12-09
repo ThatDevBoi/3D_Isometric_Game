@@ -133,6 +133,8 @@ namespace Main.Player_Locomotion
         public float independentValue;
         void Update()
         {
+            // Get my run to pass through below
+            bool run = animator.GetBool("Running");
             GatherInput_Motion();
             if (!isMovingTowardsTownHall)
             {
@@ -173,10 +175,15 @@ namespace Main.Player_Locomotion
             if (Input.GetKey(KeyCode.LeftShift) && movementInputValue > 0)
             {
                 TransitionToState(MovementState.Running);
+                animator.SetBool("Running", true);
+                animator.SetFloat("MovementSpeed", 0);
+
             }
             else if (independentValue > 0)
             {
                 currentMovementState = MovementState.WalkingSlow;
+                animator.SetBool("Running", false);
+
             }
             else if(independentValue > 2)
             {
@@ -185,8 +192,13 @@ namespace Main.Player_Locomotion
             else
             {
                 currentMovementState = MovementState.Idle;
+                animator.SetBool("Running", false);
+
             }
-            animator.SetFloat("MovementSpeed", independentValue);
+            if (run)
+                return;
+            else
+                animator.SetFloat("MovementSpeed", independentValue);
         }
 
         private void FixedUpdate()
