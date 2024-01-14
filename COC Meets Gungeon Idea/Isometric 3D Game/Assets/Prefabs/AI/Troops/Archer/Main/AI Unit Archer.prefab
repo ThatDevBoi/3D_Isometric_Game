@@ -147,6 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: de19a9df6d4b04b40ae32ffdb6a8b12c, type: 2}
-  AttackType: {fileID: 11400000, guid: 4a2ba1d10e178f94eb0875ec64421eb1, type: 2}
+  AttackType: {fileID: 11400000, guid: 58624320187d0634f985750ee04f0d8d, type: 2}
   nearestTarget: {fileID: 0}
   LayerOfInterest: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - AIProjectile
+  - MeleeAttack
   layers:
   - Default
   - TransparentFX

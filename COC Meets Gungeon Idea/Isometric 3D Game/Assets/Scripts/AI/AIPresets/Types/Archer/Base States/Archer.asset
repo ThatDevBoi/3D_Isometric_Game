@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIStates
   name: Archer
   HP: 60
-  DMG: 20
+  DMG: 30
   houseSpace: 2
   rangeUntilAttack: 6
   moveSpeed: 4
-  timeBetweenAttacks: 4
+  timeBetweenAttacks: 1
