@@ -11,33 +11,21 @@ namespace Main.Player_Locomotion
     {
         public Rigidbody player_RB;
         private BoxCollider player_col;
-
         public Transform FadeObjectTransform;
         public Transform exitTransform;
         public float moveSpeed = 5f;
         public float fadeDuration = 2f;
-        public bool isMovingTowardsTownHall = false;
-        public bool isMovingAwayFromTownHall = false;
-        private float startTime;
-        private Color originalColor;
-        public Material playerMaterial;
 
         public float movement_Velocity;
-        private float dampVelocity;
         Vector3 InputVec;
         GM gameManager;
-
         public float GravityStrength;
         public bool isGrounded;
         public float jumpHeight;
-
         public bool insideEventArea = false;
-
         public TextMeshPro interactiveText;
-
         // animations
         public Animator animator;
-
         // Enum to represent movement states
         public enum MovementState
         {
@@ -46,19 +34,18 @@ namespace Main.Player_Locomotion
             WalkingQuick,
             Running
         }
-
         public MovementState currentMovementState = MovementState.Idle;
-
         public float movementInputValue = 0f; // The input value to control movement animations
         public float walkSpeed = 2f; // Adjust the speed for walking
         public float jogSpeed = 3f;
         public float runSpeed = 5f; // Adjust the speed for running
-
+        public float maxIndependentValue = 5.0f; // Define a maximum value for the independent value
+        public float independentIncreaseSpeed = 1.0f; // Control how fast it increases
+        public float independentDecreaseSpeed = 1.0f; // Control how fast it decreases
+        public float independentValue;
         // Melee Combat
         public bool isSwordShefed = true;
-
         List<string> playedAnimations = new List<string>();
-
         string[] allAnimationClips = new string[]
         {
             "Inward Strike 10 Degrees Normal",
@@ -88,10 +75,7 @@ namespace Main.Player_Locomotion
 
         void Start()
         {
-            playerMaterial = transform.GetChild(0).transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().material; // with mesh
             animator = transform.GetChild(0).GetComponent<Animator>();
-            //playerMaterial = GetComponent<Renderer>().material; // before mesh
-            originalColor = playerMaterial.color;
 
             interactiveText.enabled = false;
             gameManager = FindObjectOfType<GM>();
@@ -103,7 +87,7 @@ namespace Main.Player_Locomotion
             player_col = gameObject.AddComponent<BoxCollider>();
             player_RB.constraints = RigidbodyConstraints.FreezeRotation;
 
-
+            #region Attack Animations
             // Animation Mapping via floats to blend tree
             // Assign blend tree values (floats) for each animation
             // Modify this according to your blend tree values
@@ -126,100 +110,89 @@ namespace Main.Player_Locomotion
             animationToBlendTreeValue.Add("Outward Strike 80 Degrees Normal", 16.0f);
             animationToBlendTreeValue.Add("Outward Strike 90 Degrees Normal", 17.0f);
             animationToBlendTreeValue.Add("First Strike Normal Outward", 18.0f);
-
-
+            #endregion
         }
 
-        public void EnteringTownHall(bool isFading, Vector3 DesiredPosition)
-        {
-            if(isFading)
-            {
-                float journeyLength = Vector3.Distance(transform.position, DesiredPosition);
-                float journeyTime = Time.time - startTime;
-                float fractionOfJourney = journeyTime / fadeDuration;
-
-                transform.position = Vector3.Lerp(transform.position, DesiredPosition, moveSpeed * Time.deltaTime);
-                transform.LookAt(FadeObjectTransform.position);
-                Color fadedColor = originalColor;
-                fadedColor.a = Mathf.Lerp(1f, 0f, fractionOfJourney);
-                playerMaterial.color = fadedColor;
-
-                if (fractionOfJourney >= 1f)
-                {
-                    //isMovingTowardsTownHall = false;
-                    movement_Velocity = 0;
-                    if (CameraSwitcher.IsCameraActive(gameManager.gameplayCamera))
-                    {
-                        CameraSwitcher.SwitchCamera(gameManager.villageCamera);
-                        gameManager.UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = true;
-                        gameManager.currentSelectedVillagePiece = null;
-                    }
-                }
-            }
-            else
-            {
-                float journeyTime = Time.time - startTime;
-                float fractionOfJourney = journeyTime / fadeDuration;
-
-                transform.position = Vector3.Lerp(transform.position, DesiredPosition, moveSpeed * Time.deltaTime);
-                transform.LookAt(exitTransform.position);
-                Vector3 exitPosition = exitTransform.TransformPoint(Vector3.zero);
-                Vector3 direction = (transform.position - DesiredPosition).normalized;
-
-
-
-                Color fadedColor = originalColor;
-                fadedColor.a = Mathf.Lerp(0f, 1f, fractionOfJourney);
-                playerMaterial.color = fadedColor;
-
-                if (fractionOfJourney >= 1f)
-                {
-                    movement_Velocity = 5;
-                }
-
-                if (Vector3.Distance(transform.position, DesiredPosition) < 1f)
-                {
-                    isMovingAwayFromTownHall = false;
-                    exitTransform.gameObject.SetActive(true);
-                }
-            }
-        }
-
-        public float maxIndependentValue = 5.0f; // Define a maximum value for the independent value
-        public float independentIncreaseSpeed = 1.0f; // Control how fast it increases
-        public float independentDecreaseSpeed = 1.0f; // Control how fast it decreases
-        public float independentValue;
+        
         void Update()
         {
-            // Get my run to pass through below
-            bool run = animator.GetBool("Running");
-            GatherInput_Motion();
-            if (!isMovingTowardsTownHall)
+
+            if(gameManager.canMove)
             {
+                GatherInput_Motion();
                 Look();
-            }
-            else
-            {
-                transform.LookAt(FadeObjectTransform);
+                // Check input and transition between states based on movementInputValue
+                if (isSwordShefed == true && Input.GetKey(KeyCode.LeftShift) && movementInputValue > 0)
+                {
+                    TransitionToState(MovementState.Running);
+                    animator.SetBool("Running", true);
+                    animator.SetFloat("MovementSpeed", 0);
+
+                }
+                else if (independentValue > 0)
+                {
+                    currentMovementState = MovementState.WalkingSlow;
+                    animator.SetBool("Running", false);
+
+                }
+                else if (independentValue > 2)
+                {
+                    currentMovementState = MovementState.WalkingQuick;
+                }
+                else
+                {
+                    currentMovementState = MovementState.Idle;
+                    animator.SetBool("Running", false);
+
+                }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Attacking = true;
+                    animator.SetBool("Attacking", Attacking);
+                    if (isSwordShefed & gameManager.interactingWithTownHall == false)
+                    {
+                        DrawSword();
+                    }
+                    else if (Attacking && !isSwordShefed && gameManager.interactingWithTownHall == false)
+                    {
+                        MeleeAttack();
+                    }
+                }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    Attacking = false;
+                    animator.SetBool("Attacking", Attacking);
+                }
+
+
+                if (Input.GetMouseButton(1))
+                    StartCoroutine(SheathSword());
             }
 
-            if (isMovingAwayFromTownHall)
-                EnteringTownHall(false, exitTransform.position);
+            // Get my run to pass through below
+            bool run = animator.GetBool("Running");
+
+            animator.SetBool("canMove", gameManager.canMove);
+
 
             if (Input.GetKeyDown(KeyCode.J) && isGrounded == true)
             {
                 Jump();
             }
 
-            if (insideEventArea && Input.GetKeyDown(KeyCode.E) && !isMovingTowardsTownHall)
+            // Click event needs to change so it's universal - this just works for town hall - change to the game manager
+            if (insideEventArea && Input.GetKeyDown(KeyCode.E) && gameManager.canClickDefences == false && gameManager.canArrangeVillage == false)
             {
-                isMovingTowardsTownHall = true;
+                gameManager.canMove = false;
+                gameManager.interactingWithTownHall = true; // this is for the UI Enable
+                gameManager.TownHallChoiceUI.enabled = true;
             }
 
             float currentInputValue = InputVec.magnitude;
 
             // Gradually increase the independent value based on player input
-            if (currentInputValue > 0)
+            if (currentInputValue > 0 && gameManager.canMove == true)
             {
                 independentValue = Mathf.Min(independentValue + independentIncreaseSpeed * Time.deltaTime, maxIndependentValue);
             }
@@ -228,30 +201,7 @@ namespace Main.Player_Locomotion
                 // Gradually decrease the independent value when there's no input
                 independentValue = 0;//Mathf.Max(independentValue - independentDecreaseSpeed * Time.deltaTime, 0.0f);
             }
-            // Check input and transition between states based on movementInputValue
-            if (isSwordShefed == true && Input.GetKey(KeyCode.LeftShift) && movementInputValue > 0)
-            {
-                TransitionToState(MovementState.Running);
-                animator.SetBool("Running", true);
-                animator.SetFloat("MovementSpeed", 0);
-
-            }
-            else if (independentValue > 0)
-            {
-                currentMovementState = MovementState.WalkingSlow;
-                animator.SetBool("Running", false);
-
-            }
-            else if(independentValue > 2)
-            {
-                currentMovementState = MovementState.WalkingQuick;
-            }
-            else
-            {
-                currentMovementState = MovementState.Idle;
-                animator.SetBool("Running", false);
-
-            }
+            
             if (run)
                 return;
             else
@@ -263,43 +213,30 @@ namespace Main.Player_Locomotion
             animSwordBool = isSwordShefed;
             animator.SetBool("IsSwordSheath", isSwordShefed);
             #endregion
-            if (Input.GetMouseButtonDown(0))
-            {
-                Attacking = true;
-                animator.SetBool("Attacking", Attacking);
-                if(isSwordShefed)
-                {
-                    DrawSword();
-                }
-                else if(Attacking && !isSwordShefed)
-                {
-                    MeleeAttack();
-                }
-            }
 
-            if(Input.GetMouseButtonUp(0))
-            {
-                Attacking = false;
-                animator.SetBool("Attacking", Attacking);
-            }
-
-
-            if (Input.GetMouseButton(1))
-                StartCoroutine(SheathSword());
 
         }
 
         private void FixedUpdate()
         {
             SetMovementSpeed();
-            if (isMovingTowardsTownHall)
-            {
-                EnteringTownHall(true, FadeObjectTransform.position);
-            }
-            else
-            {
+
+            if (!gameManager.interactingWithTownHall && gameManager.canMove == true)
                 Move();
-            }
+        }
+
+        # region Locomotion Functions
+        void Move()
+        {
+            player_RB.MovePosition(transform.position + (transform.forward * InputVec.magnitude) * movement_Velocity * Time.deltaTime);
+
+            //
+        }
+
+        void Jump()
+        {
+            player_RB.AddForce(new Vector3(0, jumpHeight, 0));
+            isGrounded = false;
         }
 
         void GatherInput_Motion()
@@ -311,8 +248,10 @@ namespace Main.Player_Locomotion
             }
 
         }
+        #endregion
 
-        void Look()
+        #region Locomotion Helpers
+        void Look() // Look in direction in which the isometric character is moving
         {
             if (InputVec != Vector3.zero)
             {
@@ -322,13 +261,36 @@ namespace Main.Player_Locomotion
             }
         }
 
-        void Move()
+        void TransitionToState(MovementState newState)
         {
-            player_RB.MovePosition(transform.position + (transform.forward * InputVec.magnitude) * movement_Velocity * Time.deltaTime);
-
-            //
+            if (currentMovementState != newState)
+            {
+                currentMovementState = newState;
+            }
         }
 
+        void SetMovementSpeed()
+        {
+            switch (currentMovementState)
+            {
+                case MovementState.Idle:
+                    //movement_Velocity = 0;          
+                    break;
+
+                case MovementState.WalkingSlow:
+                    movement_Velocity = walkSpeed; // Adjust as needed
+                    break;
+                case MovementState.WalkingQuick:
+                    movement_Velocity = jogSpeed; // Adjust as needed
+                    break;
+                case MovementState.Running:
+                    movement_Velocity = runSpeed;
+                    break;
+            }
+        }
+        #endregion
+
+        #region Melee Combat Functions
         void DrawSword()
         {
             int drawLayer = animator.GetLayerIndex("Combat Handle");
@@ -368,7 +330,25 @@ namespace Main.Player_Locomotion
 
         }
 
+        IEnumerator SheathSword()
+        {
+            int drawLayer = animator.GetLayerIndex("Combat Handle");
 
+            animator.SetLayerWeight(drawLayer, 1);
+            animator.Play("Dummy|Sheath Weapon");
+
+            Debug.Log("Sword has been Put Away");
+
+            yield return new WaitForSeconds(1.2f);
+            animator.SetLayerWeight(drawLayer, 0);
+
+            isSwordShefed = true;
+
+            yield break;
+        }
+        #endregion
+
+        #region Melee Combat Helpers
         string GetUniqueRandomAnimation()
         {
             string[] remainingClips = GetRemainingClips();
@@ -423,59 +403,7 @@ namespace Main.Player_Locomotion
         {
             playedAnimations.Clear();
         }
-
-        IEnumerator SheathSword()
-        {
-            int drawLayer = animator.GetLayerIndex("Combat Handle");
-
-            animator.SetLayerWeight(drawLayer, 1);
-            animator.Play("Dummy|Sheath Weapon");
-
-            Debug.Log("Sword has been Put Away");
-
-            yield return new WaitForSeconds(1.2f);
-            animator.SetLayerWeight(drawLayer, 0);
-
-            isSwordShefed = true;
-
-            yield break;
-        }
-
-        float previousMovementInputValue = 0f; // Variable to store the previous value of movementInputValue
-
-        void SetMovementSpeed()
-        {
-            switch (currentMovementState)
-            {
-                case MovementState.Idle:
-                    //movement_Velocity = 0;          
-                    break;
-
-                case MovementState.WalkingSlow:
-                    movement_Velocity = walkSpeed; // Adjust as needed
-                    break;
-                case MovementState.WalkingQuick:
-                    movement_Velocity = jogSpeed; // Adjust as needed
-                    break;
-                case MovementState.Running:
-                    movement_Velocity = runSpeed;
-                    break;
-            }
-        }
-
-        void TransitionToState(MovementState newState)
-        {
-            if (currentMovementState != newState)
-            {
-                currentMovementState = newState;
-            }
-        }
-
-        void Jump()
-        {
-            player_RB.AddForce(new Vector3(0, jumpHeight, 0));
-            isGrounded = false;
-        }
+        #endregion
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -483,10 +411,11 @@ namespace Main.Player_Locomotion
             {
                 isGrounded = true;
             }
-        }
+        }   // Ground Check
 
         private void OnTriggerEnter(Collider other)
         {
+            // This is for the town hall event  - Needs to be changed to a universal event
             if (other.gameObject.layer == 11)
             {
                 interactiveText.enabled = true;

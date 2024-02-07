@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: GiantAttk
+  m_Name: GiantAttack
   m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
-  Arms: {fileID: 4229542416996498097, guid: 54c8a2a82d9df874e9f086cbd50a4b3a, type: 3}
+  Arms: {fileID: 0}
   States: {fileID: 11400000, guid: a700e2513789bec47a48756e338a3af6, type: 2}

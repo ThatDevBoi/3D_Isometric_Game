@@ -190,15 +190,19 @@ public class VillageItem : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        // Raycast to the ground to find the position to snap to
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Ground")))
+        if(gameManager.canArrangeVillage)
         {
-            // Snap the object to the nearest grid position
-            Vector3 snapPosition = SnapToGrid(hit.point);
-            transform.position = snapPosition;
+            // Raycast to the ground to find the position to snap to
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Ground")))
+            {
+                // Snap the object to the nearest grid position
+                Vector3 snapPosition = SnapToGrid(hit.point);
+                transform.position = snapPosition;
+            }
         }
+
     }
 
     private Vector3 SnapToGrid(Vector3 position)

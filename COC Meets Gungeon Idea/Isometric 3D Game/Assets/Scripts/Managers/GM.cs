@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 // Manager of entire game format/structure
@@ -12,23 +13,36 @@ public class GM : MonoBehaviour
 {
     public static GM Instance { get; private set; } // Singleton
     private List<AI_Unit> aiUnits = new List<AI_Unit>();    // List of All deployed AI Troops
+    [SerializeField]
     private List<Transform> defenseTransforms = new List<Transform>();  // List of all Defence Towers
     // Player Controller Class Reference
     private PC_3D_Controller PC;
     [Tooltip("Flag to check if the player is inside the Uogade Menu")]
     public bool currentlyUpgrading = false;
     [Tooltip("VCamera References to all Cameras that change on Runtime")]
-    public CinemachineVirtualCamera gameplayCamera, villageCamera, pivotCamera;
+    public CinemachineVirtualCamera gameplayCamera, villageCamera, pivotCamera, villageArrangerCamera;
 
     [Header("Script Helpers")]
     public UpgradeDetection_Helper UpgradeHelper;
     public VillageItem currentSelectedVillagePiece;
+
+
+    // Control Booleans 
+    public bool interactingWithTownHall;    // boolean controls when we interact with the town hall
+    public bool canClickDefences = false;
+    public bool canArrangeVillage = false;
+    public bool canMove = true;
+
+    // UI Vars
+    public Canvas TownHallChoiceUI;
 
     #region Enable/Disable
     private void OnEnable()
     {
         CameraSwitcher.Register(gameplayCamera);
         CameraSwitcher.Register(villageCamera);
+        CameraSwitcher.Register(pivotCamera);
+        CameraSwitcher.Register(villageArrangerCamera);
         CameraSwitcher.SwitchCamera(gameplayCamera);
     }
 
@@ -36,6 +50,8 @@ public class GM : MonoBehaviour
     {
         CameraSwitcher.UnRegister(gameplayCamera);
         CameraSwitcher.UnRegister(villageCamera);
+        CameraSwitcher.UnRegister(pivotCamera);
+        CameraSwitcher.UnRegister(villageArrangerCamera);
     }
     #endregion
 
@@ -51,6 +67,8 @@ public class GM : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        TownHallChoiceUI.enabled = false;
     }
 
     void Start()
@@ -71,33 +89,21 @@ public class GM : MonoBehaviour
         if (CameraSwitcher.IsCameraActive(gameplayCamera))
             UpgradeHelper.GetComponent<UpgradeDetection_Helper>().currentState = UpgradeDetection_Helper.DefenseState.None;
             
-
-        if (CameraSwitcher.IsCameraActive(villageCamera) || CameraSwitcher.IsCameraActive(pivotCamera))
-        {
-            currentlyUpgrading = true;
-        }
-        else
-        {
-            currentlyUpgrading = false;
-
-        }
-
+        // leave camera effect transitions
         if (CameraSwitcher.IsCameraActive(pivotCamera) && Input.GetKey(KeyCode.Escape) &
             UpgradeHelper.currentState == UpgradeDetection_Helper.DefenseState.Orbitting & UpgradeHelper.cameraBrain.IsBlending == false)
         {
-            ExitUpgrade(); // -> Remove 
+            UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = true;
+            currentSelectedVillagePiece = null;
             UpgradeHelper.GetComponent<UpgradeDetection_Helper>().orbitingIsDone = true;
-
-
         }
-        if (CameraSwitcher.IsCameraActive(villageCamera))
+
+        // Leaves Town Hall - /// Needs to be changed later so it's a cleaner way to manage this 
+        if (CameraSwitcher.IsCameraActive(villageCamera) || CameraSwitcher.IsCameraActive(villageArrangerCamera))
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                PC.isMovingTowardsTownHall = false;
-                PC.isMovingAwayFromTownHall = true;
-                CameraSwitcher.SwitchCamera(gameplayCamera);
-                UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = false;
+                ExitTownHall();
             }
         }
     }
@@ -172,10 +178,37 @@ public class GM : MonoBehaviour
         return nearestTarget;
     }
 
-    void ExitUpgrade()
+    // Setters
+    public void UpgradeMenu()
     {
-        UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = true;
-        currentSelectedVillagePiece = null;
+        canClickDefences = true;
+        canArrangeVillage = false;
+        TownHallChoiceUI.enabled = false;
 
+        // Make sure camera effect happens 
+        CameraSwitcher.SwitchCamera(villageCamera);
+
+        UpgradeHelper.enabled = true;
+    }
+    
+    public void ArrangeVillage()
+    {
+        canArrangeVillage = true;
+        canClickDefences = false;
+        TownHallChoiceUI.enabled = false;
+
+        CameraSwitcher.SwitchCamera(villageArrangerCamera);
+    }
+
+
+    public void ExitTownHall()
+    {
+        canMove = true; // the player can now take control of player character again
+        interactingWithTownHall = false;    // the player is no longer altering the village so we have left the event
+        canArrangeVillage = false;
+        canClickDefences = false;   // We are no longer clicking Defences to upgrade 
+        CameraSwitcher.SwitchCamera(gameplayCamera);    // Switch camera back to main Isometric cam
+        UpgradeHelper.GetComponent<UpgradeDetection_Helper>().enabled = false;  // We want to turn off the helper
+        TownHallChoiceUI.enabled = false;
     }
 }

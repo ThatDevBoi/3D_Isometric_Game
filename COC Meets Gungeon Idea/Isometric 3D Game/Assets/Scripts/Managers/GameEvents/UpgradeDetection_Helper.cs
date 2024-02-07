@@ -81,18 +81,22 @@ public class UpgradeDetection_Helper : MonoBehaviour
     // New 
     private void HandleChangingToPivotCam()
     {
-        CameraSwitcher.SwitchCamera(pivotCam);
-        pivotCam.LookAt = defenseTransform;
-        pivotCam.Follow = defenseTransform;
-        cameraOriginalPosition = pivotCam.transform.position;
-        cameraOriginalRotation = pivotCam.transform.rotation;
-
-        if(cameraBrain.IsBlending == false)
+        if (gameManager.canClickDefences == true && gameManager.canArrangeVillage == false)
         {
-            currentState = DefenseState.FollowingDefenceUp;
-        }
-    }
+            CameraSwitcher.SwitchCamera(pivotCam);
+            pivotCam.LookAt = defenseTransform;
+            pivotCam.Follow = defenseTransform;
+            cameraOriginalPosition = pivotCam.transform.position;
+            cameraOriginalRotation = pivotCam.transform.rotation;
 
+            if (cameraBrain.IsBlending == false)
+            {
+                currentState = DefenseState.FollowingDefenceUp;
+            }
+        }
+
+    }
+    // When following defence object up to upgrade
     private void HandleFollowingDefenceUp()
     {
         float distanceCovered = (Time.time - startTime) * movementSpeedToUpgradeView;
@@ -105,6 +109,7 @@ public class UpgradeDetection_Helper : MonoBehaviour
         }
     }
 
+    // When we rotate around defence object to upgrade
     private void HandleOrbitting()
     {
         pivotCam.transform.RotateAround(gameObject.transform.position, Vector3.up, orbitSpeed * Time.deltaTime);
@@ -115,6 +120,7 @@ public class UpgradeDetection_Helper : MonoBehaviour
         }
     }
 
+    // Exit Upgrade 
     private void HandleFollowingDefenceAndLerping()
     {
         float distanceCovered = (Time.time - startTime) * lerpSpeed;
@@ -132,7 +138,7 @@ public class UpgradeDetection_Helper : MonoBehaviour
         }
     }
 
-    // Function to start the defense behavior
+    // Function that makes defence move upward when upgrading menu is active
     private void StartDefenseBehavior(Transform targetTransform, RaycastHit hit)
     {
         gameManager.currentSelectedVillagePiece = targetTransform.GetComponent<VillageItem>();
@@ -151,7 +157,7 @@ public class UpgradeDetection_Helper : MonoBehaviour
 
     void RaycastClickDetection()
     {
-        if (Input.GetMouseButtonDown(0) && gameManager.currentlyUpgrading)
+        if (Input.GetMouseButtonDown(0) && gameManager.canClickDefences)    // can only happen when mouse is clicked and if I can upgrade
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -159,7 +165,8 @@ public class UpgradeDetection_Helper : MonoBehaviour
             {
                 pivotCam.LookAt = hit.transform;
                 pivotCam.Follow = hit.transform;
-                StartDefenseBehavior(hit.transform, hit);
+
+                StartDefenseBehavior(hit.transform, hit);   // makes hit object move upward
                 gameManager.currentSelectedVillagePiece = hit.transform.gameObject.GetComponent<VillageItem>();
             }
         }

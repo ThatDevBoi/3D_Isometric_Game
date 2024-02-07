@@ -55,11 +55,11 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 2
-          outSlope: 2
+          inSlope: 2.957136
+          outSlope: 2.957136
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.018225908
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -69,6 +69,17 @@ MonoBehaviour:
     m_Blend:
       m_Style: 2
       m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: Gameplay Camera
+    m_To: AdjustVillageCamera
+    m_Blend:
+      m_Style: 5
+      m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
